@@ -5,7 +5,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# Necessário para o sistema reconhecer a pasta 'apps'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(BASE_DIR / 'apps'))
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
@@ -27,6 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.sites', # Necessário para o django-allauth
     'allauth',
     'allauth.account',
+    
+    # Apps do Sistema
+    'accounts',
 ]
 
 MIDDLEWARE = [
