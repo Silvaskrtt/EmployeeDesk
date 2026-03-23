@@ -1,0 +1,53 @@
+# ======================
+# Environment
+# ======================
+.env
+.env.*
+!.env.example
+
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+
+# ======================
+# Django
+# ======================
+*.mo
+*.pot
+/media/
+/staticfiles/
+
+# ======================
+# Virtualenv
+# ======================
+venv/
+.env/
+.venv/
+
+# ======================
+# IDE / OS
+# ======================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ======================
+# Tests / Coverage
+# ======================
+.coverage
+htmlcov/
+.pytest_cache/
+
+# ======================
+# Build / Deploy
+# ======================
+dist/
+build/
+*.egg-info/

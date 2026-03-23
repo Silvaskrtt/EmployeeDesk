@@ -1,0 +1,39 @@
+# ============================
+# Core
+# ============================
+Django>=6.0.2
+
+# ============================
+# Authentication
+# ============================
+django-allauth>=0.61.0
+#djangorestframework>=3.16.1
+
+# ============================
+# Database
+# ============================
+#psycopg2-binary>=2.9
+
+# ============================
+# Frontend
+# ============================
+#django-bootstrap5>=23.3
+
+# ============================
+# Environment Variables
+# ============================
+python-dotenv>=1.0
+django-environ>=0.13.0
+
+# ============================
+# Security / Utils
+# ============================
+#django-crispy-forms>=2.1
+#crispy-bootstrap5>=2024.2
+#Pillow>=12.1.1
+
+
+#openpyxl>=3.1.5
+#reportlab>=4.4.10
+
+#django-extensions>=4.1
