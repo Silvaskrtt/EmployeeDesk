@@ -3,10 +3,12 @@ import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+# Carrega o .env da raiz do projeto
+BASE_DIR = Path(__file__).resolve().parent.parent
+env_path = BASE_DIR / '.env'
+load_dotenv(env_path)
 
 # Necessário para o sistema reconhecer a pasta 'apps'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(BASE_DIR / 'apps'))
 
 SECRET_KEY = os.getenv("SECRET_KEY")
@@ -71,13 +73,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
+DB_NAME = os.getenv("DB_NAME", "db.sqlite3")  # Valor padrão
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / os.getenv("DB_NAME"),
+        'NAME': BASE_DIR / DB_NAME,
     }
 }
 
