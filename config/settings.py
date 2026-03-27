@@ -34,6 +34,14 @@ INSTALLED_APPS = [
     
     # Apps do Sistema
     'accounts',
+    'address',
+    'auditlog',
+    'department',
+    'document',
+    'employee',
+    'position',
+    'status',
+    'userdepartment',
 ]
 
 MIDDLEWARE = [
