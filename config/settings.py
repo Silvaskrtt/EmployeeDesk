@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'allauth.account',
     
     # Apps do Sistema
+    'accessprofile',
     'accounts',
     'address',
     'auditlog',
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'employee',
     'position',
     'status',
-    'userdepartment',
+    'employeedepartment',
 ]
 
 MIDDLEWARE = [
