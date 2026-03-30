@@ -4,8 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Importação de modelos relacionados de outros aplicativos
 from accounts.models import User
-from status.models import Status 
-from position.models import Position 
+from status.models import Status
 from address.models import Address
 
 
@@ -203,10 +202,11 @@ class Employee(models.Model):
         verbose_name='Status'
     )
     
+    # Obs.: ForeignKey usando strings para evitar a dependência circular entre os modelos. 
     # Cargo ocupado pelo funcionário
     # PROTECT: Impede exclusão de Position em uso
     position = models.ForeignKey(
-        Position,
+        'position.Position',
         on_delete=models.PROTECT,
         verbose_name='Cargo'
     )
