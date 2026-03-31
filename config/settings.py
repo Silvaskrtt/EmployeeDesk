@@ -40,9 +40,10 @@ INSTALLED_APPS = [
     'department',
     'document',
     'employee',
+    'employeedepartment',
+    'leaverequest',
     'position',
     'status',
-    'employeedepartment',
 ]
 
 MIDDLEWARE = [
