@@ -1,0 +1,41 @@
+{% load i18n %}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="EmployeeDesk - Gestão de funcionários">
+  <title>{% block title %}EmployeeDesk{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  {% block head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-[#223240] text-white antialiased">
+  <div class="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top,_rgba(96,191,129,0.12),_transparent_35%),radial-gradient(circle_at_bottom,_rgba(59,140,86,0.10),_transparent_40%)]"></div>
+
+  <div class="relative z-10 min-h-screen">
+    <header class="border-b border-white/5 bg-[#1c2b38]/60 backdrop-blur-sm">
+      <div class="mx-auto flex w-full max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a href="/" class="inline-flex items-center gap-2">
+          <span class="text-2xl font-bold text-[#9FD948]">G</span>
+          <span class="text-lg font-semibold tracking-wide text-white">EmployeeDesk</span>
+        </a>
+
+        <div class="flex items-center gap-3 text-sm text-slate-300">
+          {% if user.is_authenticated %}
+            <span class="hidden sm:inline">{{ user.get_username }}</span>
+            <a href="{% url 'account_logout' %}" class="rounded-md border border-[#60BF81]/40 px-3 py-1.5 text-[#60BF81] transition hover:border-[#9FD948] hover:text-[#9FD948]">Sair</a>
+          {% else %}
+            <a href="{% url 'account_login' %}" class="rounded-md border border-[#60BF81]/40 px-3 py-1.5 text-[#60BF81] transition hover:border-[#9FD948] hover:text-[#9FD948]">Entrar</a>
+          {% endif %}
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto flex w-full max-w-7xl flex-1 items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

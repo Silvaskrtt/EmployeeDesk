@@ -1,0 +1,111 @@
+{% load i18n %}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> EmployeeDesk | Login</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-[#223240] text-white antialiased">
+	<main class="relative flex min-h-screen items-center justify-center p-0 sm:p-6">
+		<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(96,191,129,0.12),_transparent_35%),radial-gradient(circle_at_bottom,_rgba(59,140,86,0.10),_transparent_40%)]"></div>
+
+		<section class="relative z-10 w-full max-w-[560px] rounded-none border border-white/5 bg-[#1c2b38]/90 p-6 shadow-2xl shadow-black/40 backdrop-blur-sm sm:rounded-2xl sm:p-10">
+			<header class="mb-8 text-center">
+				<div class="inline-flex items-center gap-2">
+					<span class="text-3xl font-bold text-[#9FD948]">G</span>
+					<h1 class="text-2xl font-semibold tracking-wide text-white">EmployeeDesk <span class="text-[#9FD948]"></span></h1>
+				</div>
+			</header>
+
+			{% if form.non_field_errors %}
+			<div class="mb-4 rounded-md border border-red-400/50 bg-red-900/30 px-3 py-2 text-sm text-red-100">
+				{% for error in form.non_field_errors %}
+					<p>{{ error }}</p>
+				{% endfor %}
+			</div>
+			{% endif %}
+
+			<form method="post" action="{% url 'account_login' %}" class="space-y-4">
+				{% csrf_token %}
+
+				<div>
+					<label for="id_login" class="sr-only">Usuario</label>
+					<input
+						id="id_login"
+						name="login"
+						type="text"
+						autocomplete="username"
+						placeholder="Usuario"
+						required
+						value="{{ form.login.value|default:'' }}"
+						class="w-full rounded-md border border-[#3B8C56]/50 bg-[#223240]/60 px-4 py-2.5 text-sm text-white placeholder:text-slate-300/70 outline-none transition focus:border-[#60BF81] focus:ring-2 focus:ring-[#60BF81]/35"
+					>
+					{% if form.login.errors %}
+						<p class="mt-1 text-xs text-red-300">{{ form.login.errors|striptags }}</p>
+					{% endif %}
+				</div>
+
+				<div>
+					<label for="id_password" class="sr-only">Senha</label>
+					<div class="relative">
+						<input
+							id="id_password"
+							name="password"
+							type="password"
+							autocomplete="current-password"
+							placeholder="Senha"
+							required
+							class="w-full rounded-md border border-[#3B8C56]/50 bg-[#223240]/60 px-4 py-2.5 pr-11 text-sm text-white placeholder:text-slate-300/70 outline-none transition focus:border-[#60BF81] focus:ring-2 focus:ring-[#60BF81]/35"
+						>
+						<button
+							type="button"
+							id="togglePassword"
+							class="absolute inset-y-0 right-0 flex items-center px-3 text-[#60BF81] transition hover:text-[#9FD948]"
+							aria-label="Mostrar senha"
+						>
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-5 w-5" aria-hidden="true">
+								<path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+								<circle cx="12" cy="12" r="3"></circle>
+							</svg>
+						</button>
+					</div>
+					{% if form.password.errors %}
+						<p class="mt-1 text-xs text-red-300">{{ form.password.errors|striptags }}</p>
+					{% endif %}
+				</div>
+
+				{% if redirect_field_value %}
+					<input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+				{% endif %}
+
+				<button
+					type="submit"
+					class="w-full rounded-md bg-[#9FD948] px-4 py-2.5 text-sm font-semibold uppercase tracking-wide text-[#1d2a35] transition hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#9FD948]/60 focus:ring-offset-2 focus:ring-offset-[#1c2b38]"
+				>
+					Entrar
+				</button>
+			</form>
+
+			<footer class="mt-4 flex items-center justify-between text-sm">
+				<a href="{% url 'account_reset_password' %}" class="text-[#60BF81] transition hover:text-[#9FD948]">Esqueci a Senha</a>
+				<a href="{% url 'account_signup' %}" class="text-[#60BF81] transition hover:text-[#9FD948]">Criar Conta</a>
+			</footer>
+		</section>
+	</main>
+
+	<script>
+		const toggleButton = document.getElementById('togglePassword');
+		const passwordInput = document.getElementById('id_password');
+
+		if (toggleButton && passwordInput) {
+			toggleButton.addEventListener('click', () => {
+				const hidden = passwordInput.getAttribute('type') === 'password';
+				passwordInput.setAttribute('type', hidden ? 'text' : 'password');
+				toggleButton.setAttribute('aria-label', hidden ? 'Ocultar senha' : 'Mostrar senha');
+			});
+		}
+	</script>
+</body>
+</html>
